@@ -5,3 +5,5 @@ trtl.shape = rammy
 trtl.shape = cry_man
 
 trtl.forward(100)
+
+print("")
