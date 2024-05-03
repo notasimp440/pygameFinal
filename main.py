@@ -1,9 +1,17 @@
-import turtle as trtl
-cry_man = 'kms.jpg'
-rammy = 'rammy.jpg'
-trtl.shape = rammy
-trtl.shape = cry_man
+import turtle as tur
+wn = tur.Screen()
 
-trtl.forward(100)
+#our pics
+cry_man = 'kms.gif'
+rammy = 'rammy.gif'
 
-print("")
+#all the mumbo jumbo
+wn.addshape(rammy)
+
+#plyaer
+player = tur.Turtle()
+player.shape(rammy)
+
+
+
+player.forward(100)
