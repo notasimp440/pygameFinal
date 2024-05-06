@@ -1,6 +1,6 @@
 import turtle as tur
-tur.setup(1500,1500)
-wn = tur.Screen()
+
+tur.setup
 
 #our pics
 cry_man = 'kms.gif'
@@ -17,15 +17,9 @@ def player_right():
 player = tur.Turtle()
 player.shape(rammy)
 player.shapesize(1,1,1)
-player.forward(100)
+
+wn.listen
+
+wn.onkey(player_right, 'Right')
 
 
-while True:
-    tur.listen
-
-    tur.onkey(player_right, 'Right')
-
-
-
-
-    wn.mainloop()
