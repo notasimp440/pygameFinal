@@ -1,4 +1,5 @@
 import turtle as tur
+import tkinter as tk
 
 
 
@@ -11,7 +12,7 @@ wn = tur.Screen
 
 #our pics
 cry_man = 'kms.gif'
-rammy = 'rammy.gif'
+rammy = 'R2.gif'
 
 #all the mumbo jumbo
 tur.addshape(rammy)
@@ -20,7 +21,8 @@ tur.addshape(cry_man)
 
 #button mapping
 def player_right():
-    player.goto(player.pos() + (30, 0))
+    for i in range(5):
+        player.goto(player.pos() + (6, 0))
 
 def player_left():
     player.goto(player.pos() + (-30, 0))
@@ -37,17 +39,23 @@ player = tur.Turtle()
 player.shape(rammy)
 player.shapesize(1,1,1)
 player.penup()
+player.goto(0,0)
 
-#player bar
+#player zone
 wall = tur.Turtle()
+wall.speed(200)
+wall.hideturtle()
 wall.penup()
-wall.goto(250,250)
+wall.goto(0,90)
 wall.pendown()
-wall.forward(250)
-wall.right(250)
-wall.penup()
-wall.goto(-250, 250)
-
+wall.goto(300,90)
+wall.goto(-300,90)
+wall.goto(-300,-90)
+wall.goto(-300,-400)
+wall.pencolor('white')
+wall.goto(300,-400)
+wall.pencolor('black')
+wall.goto(300,90)
 
 
 #player event
