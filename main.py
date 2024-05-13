@@ -16,23 +16,32 @@ rammy = 'R2.gif'
 
 #all the mumbo jumbo
 tur.addshape(rammy)
-tur.addshape(cry_man)
+tur.addshape(cry_man) 
 
 
 #button mapping
 def player_right():
-    for i in range(5):
-        player.goto(player.pos() + (6, 0))
+    if player.xcor() < 300:
+        for i in range(5):
+            player.goto(player.pos() + (6, 0))
 
 def player_left():
-    player.goto(player.pos() + (-30, 0))
+    if player.xcor() > -300:
+        for i in range(5):
+            player.goto(player.pos() + (-6, 0))
 
 
 def player_down():
-    player.goto(player.pos() + (0, -30))
+    print(player.ycor())
+    if player.ycor() > -400:
+        for i in range(5):
+            player.goto(player.pos() + (0, -5))
 
 def player_up():
-    player.goto(player.pos() + (0, 30))
+    print(player.ycor())
+    if player.ycor() < 90:
+        for i in range(5):
+            player.goto(player.pos() + (0, 6))
 
 #player init
 player = tur.Turtle()
@@ -40,6 +49,8 @@ player.shape(rammy)
 player.shapesize(1,1,1)
 player.penup()
 player.goto(0,0)
+playerPos = player.pos()
+
 
 #player zone
 wall = tur.Turtle()
@@ -57,6 +68,17 @@ wall.goto(300,-400)
 wall.pencolor('black')
 wall.goto(300,90)
 
+#station set
+stove = tur.Turtle()
+stove.hideturtle()
+stove.penup()
+stove.goto(-300,90)
+stove.pendown()
+stove.goto(-300, -20)
+stove.goto(-350,-20)
+stove.goto(-350,90)
+stove.goto(-300,90)
+stove.fillcolor('black')
 
 #player event
 tur.listen()
