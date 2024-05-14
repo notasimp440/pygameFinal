@@ -7,6 +7,7 @@ import tkinter as tk
 
 
 
+
 tur.setup
 wn = tur.Screen
 
@@ -20,6 +21,12 @@ tur.addshape(cry_man)
 
 
 #button mapping
+def player_interact():
+    if (player.xcor() <= -300 and player.xcor() >= -350  and player.ycor() >= -20 and player.ycor() <= 90):
+        print("Interacted")
+
+
+
 def player_right():
     if player.xcor() < 300:
         for i in range(5):
@@ -68,8 +75,9 @@ wall.goto(300,-400)
 wall.pencolor('black')
 wall.goto(300,90)
 
-#station set
+#stove set-up
 stove = tur.Turtle()
+
 stove.hideturtle()
 stove.penup()
 stove.goto(-300,90)
@@ -86,6 +94,10 @@ tur.onkey(player_right,'Right')
 tur.onkey(player_left, 'Left')
 tur.onkey(player_down, 'Down')
 tur.onkey(player_up, 'Up')
+tur.onkey(player_interact, "e")
+        
+    
+
 
 tur.mainloop()
 
