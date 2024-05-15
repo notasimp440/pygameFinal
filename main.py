@@ -17,13 +17,14 @@ rammy = 'R2.gif'
 
 #all the mumbo jumbo
 tur.addshape(rammy)
-tur.addshape(cry_man) 
+tur.addshape(cry_man)
+
 
 
 #button mapping
 def player_interact():
     if (player.xcor() <= -300 and player.xcor() >= -350  and player.ycor() >= -20 and player.ycor() <= 90):
-        print("Interacted")
+        print("grabbed chips")
 
 
 
@@ -39,16 +40,25 @@ def player_left():
 
 
 def player_down():
-    print(player.ycor())
+    #print(player.ycor())
     if player.ycor() > -400:
         for i in range(5):
             player.goto(player.pos() + (0, -5))
 
 def player_up():
-    print(player.ycor())
+    #print(player.ycor())
     if player.ycor() < 90:
         for i in range(5):
             player.goto(player.pos() + (0, 6))
+
+
+#customer init
+customer = tur.Turtle()
+customer.shape(cry_man)
+customer.penup()
+customer.speed(200)
+customer.hideturtle()
+customer.goto(0, 350)
 
 #player init
 player = tur.Turtle()
@@ -57,6 +67,11 @@ player.shapesize(1,1,1)
 player.penup()
 player.goto(0,0)
 playerPos = player.pos()
+
+#game start
+sc = tur.Screen() 
+sc.setup(1500,1500) 
+tur.textinput("YOU READY!", "Type yes to start") 
 
 
 #player zone
