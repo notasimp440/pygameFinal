@@ -1,5 +1,6 @@
 import turtle as tur
 import tkinter as tk
+import time
 
 
 
@@ -14,7 +15,7 @@ wn = tur.Screen
 #game start 
 sc = tur.Screen() 
 sc.setup(1500,1500) 
-tur.textinput("YOU READY?") 
+
 
 #our pics
 cry_man = 'kms.gif'
@@ -26,10 +27,13 @@ tur.addshape(cry_man)
 
 
 
+
 #button mapping
 def player_interact():
     if (player.xcor() <= -300 and player.xcor() >= -350  and player.ycor() >= -20 and player.ycor() <= 90):
-        print("grabbed chips")
+        txt.write("grabbed chips", font=("Arial", 14, "normal"))
+        time.sleep(1)
+        txt.clear()
 
 
 
@@ -55,6 +59,16 @@ def player_up():
     if player.ycor() < 90:
         for i in range(5):
             player.goto(player.pos() + (0, 6))
+
+
+
+#just random stuff that couldn't really go anywhere else
+txt = tur.Turtle() 
+txt.penup()
+txt.hideturtle()
+txt.goto(-350,110)
+
+
 
 
 #customer init
