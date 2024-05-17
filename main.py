@@ -11,6 +11,11 @@ import tkinter as tk
 tur.setup
 wn = tur.Screen
 
+#game start 
+sc = tur.Screen() 
+sc.setup(1500,1500) 
+tur.textinput("YOU READY?") 
+
 #our pics
 cry_man = 'kms.gif'
 rammy = 'R2.gif'
@@ -68,10 +73,6 @@ player.penup()
 player.goto(0,0)
 playerPos = player.pos()
 
-#game start
-sc = tur.Screen() 
-sc.setup(1500,1500) 
-tur.textinput("YOU READY!", "Type yes to start") 
 
 
 #player zone
