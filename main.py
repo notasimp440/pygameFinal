@@ -25,16 +25,25 @@ rammy = 'R2.gif'
 tur.addshape(rammy)
 tur.addshape(cry_man)
 
+#def curstomer_order():
+
+
+
+    
+
 
 
 
 #button mapping
 def player_interact():
     if (player.xcor() <= -300 and player.xcor() >= -350  and player.ycor() >= -20 and player.ycor() <= 90):
-        txt.write("grabbed chips", font=("Arial", 14, "normal"))
-        time.sleep(1)
-        txt.clear()
-
+        grabChips.write("grabbed chips", font=("Arial", 32, "normal"))
+        time.sleep(0.3)
+        grabChips.clear()
+    elif (player.xcor() < 5 and player.xcor() > -5 and player.ycor() > 100):
+        customer.showturtle()
+        tkorder.hideturtle()
+        customer.goto(tkorder.xcor(),tkorder.ycor())
 
 
 def player_right():
@@ -63,10 +72,10 @@ def player_up():
 
 
 #just random stuff that couldn't really go anywhere else
-txt = tur.Turtle() 
-txt.penup()
-txt.hideturtle()
-txt.goto(-350,110)
+grabChips = tur.Turtle() 
+grabChips.penup()
+grabChips.hideturtle()
+grabChips.goto(-350,110)
 
 
 
@@ -87,11 +96,17 @@ player.penup()
 player.goto(0,0)
 playerPos = player.pos()
 
+#take order
+tkorder = tur.Turtle()
+tkorder.shape("square")
+tkorder.penup()
+tkorder.goto(0,130)
+tkorder.shapesize(2,2)
 
 
 #player zone
 wall = tur.Turtle()
-wall.speed(200)
+wall.speed(0)
 wall.hideturtle()
 wall.penup()
 wall.goto(0,90)
@@ -107,7 +122,7 @@ wall.goto(300,90)
 
 #stove set-up
 stove = tur.Turtle()
-
+stove.speed(0)
 stove.hideturtle()
 stove.penup()
 stove.goto(-300,90)
@@ -125,10 +140,9 @@ tur.onkey(player_left, 'Left')
 tur.onkey(player_down, 'Down')
 tur.onkey(player_up, 'Up')
 tur.onkey(player_interact, "e")
+
         
     
 
 
 tur.mainloop()
-
-
