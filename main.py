@@ -29,6 +29,8 @@ tur.addshape(cry_man)
 
 
 
+
+
     
 
 
@@ -40,10 +42,6 @@ def player_interact():
         grabChips.write("grabbed chips", font=("Arial", 32, "normal"))
         time.sleep(0.3)
         grabChips.clear()
-    elif (player.xcor() < 5 and player.xcor() > -5 and player.ycor() > 100):
-        customer.showturtle()
-        tkorder.hideturtle()
-        customer.goto(tkorder.xcor(),tkorder.ycor())
 
 
 def player_right():
