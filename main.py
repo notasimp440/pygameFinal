@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-import turtle as trtl
-import tkinter as tk
-cry_man = 'kms.jpg'
-rammy = 'rammy.jpg'
-bkg = 'background.png'
-trtl.bgpic = bkg
-trtl.shape = rammy
-trtl.shape = cry_man
-
-trtl.forward(100)
-
-
-
-trtl.getscreen()
-trtl.screensize(360, 240)
-=======
 import turtle as tur
 import tkinter as tk
 import time
@@ -161,4 +144,3 @@ tur.onkey(player_interact, "e")
 
 
 tur.mainloop()
->>>>>>> c7e99306d1b56970aa64b14458e4a4240857e9ef
