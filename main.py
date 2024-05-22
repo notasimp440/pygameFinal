@@ -74,6 +74,8 @@ grabChips = tur.Turtle()
 grabChips.penup()
 grabChips.hideturtle()
 grabChips.goto(-350,110)
+print(grabChips.xcor())
+print(grabChips.ycor())
 
 
 
