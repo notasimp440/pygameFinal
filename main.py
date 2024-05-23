@@ -24,11 +24,28 @@ rammy = 'R2.gif'
 #all the mumbo jumbo
 tur.addshape(rammy)
 tur.addshape(cry_man)
+order_taken = 0
+rec = 0
 
-#def curstomer_order():
 
 
 
+    
+    
+
+    
+#event handlers
+
+
+def take_order():
+    if (player.xcor() <= 1 and player.xcor() >= -5 and player.ycor() >= 90 and player.ycor() <= 130):
+        tkorder.hideturtle()
+        customer.showturtle()
+        customer.goto(0,130)
+        print("order taken")
+        tkorder.clear()
+        rec += 1
+        return order_taken
 
 
     
@@ -42,6 +59,7 @@ def player_interact():
         grabChips.write("grabbed chips", font=("Arial", 32, "normal"))
         time.sleep(0.3)
         grabChips.clear()
+
 
 
 def player_right():
@@ -62,7 +80,7 @@ def player_down():
             player.goto(player.pos() + (0, -5))
 
 def player_up():
-    #print(player.ycor())
+    print(player.ycor())
     if player.ycor() < 90:
         for i in range(5):
             player.goto(player.pos() + (0, 6))
@@ -74,8 +92,7 @@ grabChips = tur.Turtle()
 grabChips.penup()
 grabChips.hideturtle()
 grabChips.goto(-350,110)
-print(grabChips.xcor())
-print(grabChips.ycor())
+
 
 
 
@@ -98,10 +115,10 @@ playerPos = player.pos()
 
 #take order
 tkorder = tur.Turtle()
-tkorder.shape("square")
+tkorder.hideturtle()
 tkorder.penup()
 tkorder.goto(0,130)
-tkorder.shapesize(2,2)
+tkorder.write("Ready to take order?", align= "left",  font= ("arial", 12, "normal"))
 
 
 #player zone
@@ -140,6 +157,7 @@ tur.onkey(player_left, 'Left')
 tur.onkey(player_down, 'Down')
 tur.onkey(player_up, 'Up')
 tur.onkey(player_interact, "e")
+tur.onkey(take_order, "e")
 
         
     
