@@ -1,6 +1,7 @@
 import turtle as tur
 import tkinter as tk
 import time
+from random import *
 
 
 
@@ -24,28 +25,54 @@ rammy = 'R2.gif'
 #all the mumbo jumbo
 tur.addshape(rammy)
 tur.addshape(cry_man)
-order_taken = 0
-rec = 0
+order_taken = bool
 
 
 
 
+
+def player_location_check(x1, x2, y1, y2):
+    if (player.xcor() <= x2 and player.xcor() >= x1 and player.ycor() >= y1 and player.ycor() <= y2):
+        return True
+    else:
+        return False
     
     
 
     
 #event handlers
+def give_order():
+    global chips
+    global order_taken
+    if (player_location_check(-5, 1, 90, 130) == True and order_taken == True):
+        order_taken = False
+        chips -= 1
+        customer.goto(0, 350)
+        return order_taken
+    else:
+        pass 
+
+        
+        
+
 
 
 def take_order():
-    if (player.xcor() <= 1 and player.xcor() >= -5 and player.ycor() >= 90 and player.ycor() <= 130):
+    txt = tur.Turtle()
+    txt.hideturtle()
+    txt.goto(-130,150)
+    txt.write("i want" + want_chips + "chips")
+
+    want_chips = randint(0, 3)
+    global order_taken
+    if (player_location_check(-5, 1, 90, 130)):
         tkorder.hideturtle()
         customer.showturtle()
         customer.goto(0,130)
         print("order taken")
         tkorder.clear()
-        rec += 1
-        return order_taken
+        order_taken = True
+        return order_taken 
 
 
     
@@ -55,9 +82,11 @@ def take_order():
 
 #button mapping
 def player_interact():
+    global chips
     if (player.xcor() <= -300 and player.xcor() >= -350  and player.ycor() >= -20 and player.ycor() <= 90):
         grabChips.write("grabbed chips", font=("Arial", 32, "normal"))
         time.sleep(0.3)
+        chips += 1
         grabChips.clear()
 
 
@@ -92,6 +121,7 @@ grabChips = tur.Turtle()
 grabChips.penup()
 grabChips.hideturtle()
 grabChips.goto(-350,110)
+chips = 0
 
 
 
@@ -101,7 +131,7 @@ grabChips.goto(-350,110)
 customer = tur.Turtle()
 customer.shape(cry_man)
 customer.penup()
-customer.speed(200)
+customer.speed(30)
 customer.hideturtle()
 customer.goto(0, 350)
 
@@ -117,8 +147,8 @@ playerPos = player.pos()
 tkorder = tur.Turtle()
 tkorder.hideturtle()
 tkorder.penup()
-tkorder.goto(0,130)
-tkorder.write("Ready to take order?", align= "left",  font= ("arial", 12, "normal"))
+tkorder.goto(-130,130)
+tkorder.write("Ready to take order?", align= "left",  font= ("arial", 30, "normal"))
 
 
 #player zone
@@ -157,7 +187,8 @@ tur.onkey(player_left, 'Left')
 tur.onkey(player_down, 'Down')
 tur.onkey(player_up, 'Up')
 tur.onkey(player_interact, "e")
-tur.onkey(take_order, "e")
+tur.onkey(take_order, "q")
+tur.onkey(give_order,"g")
 
         
     
