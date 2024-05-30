@@ -11,24 +11,60 @@ from random import *
 
 
 tur.setup
-wn = tur.Screen
+wn = tur.Screen()
 
 #game start 
 sc = tur.Screen() 
 sc.setup(1500,1500) 
+sc.bgpic()
 
 
 #our pics
 cry_man = 'kms.gif'
 rammy = 'R2.gif'
 
+
+
+
+
+
+
 #all the mumbo jumbo
+num = 0
+game_len = 5
 tur.addshape(rammy)
 tur.addshape(cry_man)
 order_taken = bool
+uni_size = ["Arial", 20, "normal"]
 
 
 
+txt4order = tur.Turtle()
+txt4order.speed(0)
+txt4order.hideturtle()
+txt4order.penup()
+txt4order.goto(-130,150)
+
+
+#scores
+orders_given = 0
+chips = 0
+
+ui1 = tur.Turtle()
+ui2 = tur.Turtle()
+ui1.speed(0)
+ui2.speed(0)
+ui1.hideturtle() 
+ui2.hideturtle()
+
+ui1.penup()
+ui2.penup()
+
+ui1.goto(-200, 250)
+ui2.goto(-200, 230)
+
+ui1.write("orders given " + str(orders_given), font= uni_size)
+ui2.write("chips : " + str(chips), font= uni_size)
 
 
 def player_location_check(x1, x2, y1, y2):
@@ -42,13 +78,32 @@ def player_location_check(x1, x2, y1, y2):
     
 #event handlers
 def give_order():
-    global chips
     global order_taken
-    if (player_location_check(-5, 1, 90, 130) == True and order_taken == True):
-        order_taken = False
-        chips -= 1
-        customer.goto(0, 350)
-        return order_taken
+    global want_chips
+    global orders_given
+    global chips
+    if (player_location_check(-10, 5, 50, 130) == True and order_taken == True):
+        if chips == want_chips:
+            order_taken = False
+            chips -= want_chips
+            orders_given += 1
+            ui1.clear()
+            ui1.write("orders given " + str(orders_given), font= uni_size)
+            
+            customer.goto(0, 550)
+            tkorder.write("Ready to take order?", align= "left",  font= ("arial", 30, "normal"))
+            return order_taken
+        else:
+            tur.speed(0)
+            tur.hideturtle()
+            tur.penup()
+            tur.goto(-100,150)
+            tur.write("thats not what i ordered!", font= uni_size, align= "left" )
+            time.sleep(1)
+            tur.clear()
+
+
+
     else:
         pass 
 
@@ -58,19 +113,17 @@ def give_order():
 
 
 def take_order():
-    txt = tur.Turtle()
-    txt.hideturtle()
-    txt.goto(-130,150)
-    txt.write("i want" + want_chips + "chips")
-
-    want_chips = randint(0, 3)
-    global order_taken
-    if (player_location_check(-5, 1, 90, 130)):
+    global order_taken, want_chips
+    global chips
+    if (player_location_check(-10, 5, 50, 130)) and order_taken != True:
+        want_chips = randint(1,3)
+        tkorder.clear()
         tkorder.hideturtle()
         customer.showturtle()
         customer.goto(0,130)
-        print("order taken")
-        tkorder.clear()
+        txt4order.write("i want" + str(want_chips) + "chips", font= uni_size)
+        time.sleep(1)
+        txt4order.clear()
         order_taken = True
         return order_taken 
 
@@ -83,10 +136,14 @@ def take_order():
 #button mapping
 def player_interact():
     global chips
+    global ui1
+    global ui2
     if (player.xcor() <= -300 and player.xcor() >= -350  and player.ycor() >= -20 and player.ycor() <= 90):
         grabChips.write("grabbed chips", font=("Arial", 32, "normal"))
-        time.sleep(0.3)
+        time.sleep(0.1)
         chips += 1
+        ui2.clear()
+        ui2.write("chips : " + str(chips), font= uni_size)
         grabChips.clear()
 
 
@@ -131,9 +188,9 @@ chips = 0
 customer = tur.Turtle()
 customer.shape(cry_man)
 customer.penup()
-customer.speed(30)
+customer.speed(2)
 customer.hideturtle()
-customer.goto(0, 350)
+customer.goto(0, 500)
 
 #player init
 player = tur.Turtle()
@@ -143,7 +200,7 @@ player.penup()
 player.goto(0,0)
 playerPos = player.pos()
 
-#take order
+#ready to order.text
 tkorder = tur.Turtle()
 tkorder.hideturtle()
 tkorder.penup()
@@ -194,4 +251,8 @@ tur.onkey(give_order,"g")
     
 
 
+sc.title('FINISHED! FINAL SCORE: {}'.format(num))
+
 tur.mainloop()
+sc.update()
+
